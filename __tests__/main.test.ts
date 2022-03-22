@@ -1,29 +1,31 @@
-import {wait} from '../src/wait'
-import * as process from 'process'
-import * as cp from 'child_process'
-import * as path from 'path'
-import {expect, test} from '@jest/globals'
+import {expect, jest, test} from '@jest/globals'
+import { run } from './../src/main';
+import { coffeeAPI } from 'buymeacoffee.js'
 
-test('throws invalid number', async () => {
-  const input = parseInt('foo', 10)
-  await expect(wait(input)).rejects.toThrow('milliseconds not a number')
-})
-
-test('wait 500 ms', async () => {
-  const start = new Date()
-  await wait(500)
-  const end = new Date()
-  var delta = Math.abs(end.getTime() - start.getTime())
-  expect(delta).toBeGreaterThan(450)
-})
+import * as fs from 'fs'
 
 // shows how the runner will run a javascript action with env / stdout protocol
-test('test runs', () => {
-  process.env['INPUT_MILLISECONDS'] = '500'
-  const np = process.execPath
-  const ip = path.join(__dirname, '..', 'lib', 'main.js')
-  const options: cp.ExecFileSyncOptions = {
-    env: process.env
-  }
-  console.log(cp.execFileSync(np, [ip], options).toString())
+test('test update readme regexp', () => {
+/*
+
+  process.env['BUY_ME_A_COFFEE_TOKEN'] = 'bmac_token';
+  process.env['README'] = 'test_README.md';
+  process.env['NUMBER_OF_MESSAGES'] = '5';
+
+  const fakeSupporters = jest.fn(() => {
+    return {'hello': 'bye'};
+  });
+
+  const coffeeMock = jest.mock(coffeeAPI, () => {
+    return jest.fn().mockImplementation(() => {
+      return {Supporters: fakeSupporters};
+    });
+  });
+
+  const updatedFile = run();
+  expect(fakeSupporters.mock.calls[0]).toEqual(undefined);
+  const output = fs.readFileSync('test_README.md', 'utf-8');
+
+  expect(output).toBe('<!--START_SECTION:buy-me-a-coffee-->updated messages<!--END_SECTION:buy-me-a-coffe-->');
+*/
 })
