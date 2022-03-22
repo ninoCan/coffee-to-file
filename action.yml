@@ -14,7 +14,7 @@ inputs:
 
   FILENAME:
     description: "Case sensitive name of your file in where the messages should be stored"
-  required: true
+    required: true
 runs:
   using: 'node16'
   main: './dist/index.js'
